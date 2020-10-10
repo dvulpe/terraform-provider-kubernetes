@@ -996,3 +996,14 @@ func expandContainerResourceRequirements(l []interface{}) (*v1.ResourceRequireme
 
 	return obj, nil
 }
+
+func flattenObjectRef(in *v1.ObjectReference) []interface{} {
+	att := make(map[string]interface{})
+	if in.Name != "" {
+		att["name"] = in.Name
+	}
+	if in.Namespace != "" {
+		att["namespace"] = in.Namespace
+	}
+	return []interface{}{att}
+}
